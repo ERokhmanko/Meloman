@@ -11,12 +11,11 @@ fun main() {
     else if (previousAmount >= 10001) amount - (amount * DISCOUNT_10001)
     else amount
 
-    val discountRegularClient = if (regularClient == true) discountAmount.toInt() * DISCOUNT_REGULAR_CLIENT
+    val discountRegularClient = if (regularClient == true)
+        discountAmount.toDouble() - (discountAmount.toDouble() * DISCOUNT_REGULAR_CLIENT)
     else discountAmount
 
-    val total = discountAmount.toDouble() - discountRegularClient.toDouble()
-
-    val totalString = "%.2f".format(total)
+    val totalString = "%.2f".format(discountRegularClient)
     val rub = totalString.substringBefore(",")
     val kop = totalString.substringAfter(",")
 
