@@ -5,13 +5,15 @@ const val DISCOUNT_REGULAR_CLIENT = 0.01
 fun main() {
     val amount = 1000
     val previousAmount = 50000
-    val regularClient = true
+    val regularClient = false
 
-    val discountAmount = if (previousAmount >= 1001 && previousAmount <= 10000) amount - DISCOUNT_1001
-    else if (previousAmount >= 10001) amount - (amount * DISCOUNT_10001)
-    else amount
+    val discountAmount = when {
+        previousAmount in 1001..10000 -> amount - DISCOUNT_1001
+        previousAmount >= 10001 -> amount - (amount * DISCOUNT_10001)
+        else -> amount
+    }
 
-    val discountRegularClient = if (regularClient == true)
+    val discountRegularClient = if (regularClient)
         discountAmount.toDouble() - (discountAmount.toDouble() * DISCOUNT_REGULAR_CLIENT)
     else discountAmount
 
